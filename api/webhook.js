@@ -21,7 +21,7 @@ export default async function handler(req, res) {
     req.body?.entry?.[0]?.changes?.[0]?.value?.messages !== undefined;
 
   if (hasMessage) {
-    await fetch("https://brazilfinancejournal.app.n8n.cloud/webhook/proxy-handler", {
+    await fetch("https://brazilfinancejournal.app.n8n.cloud/webhook/whatsapp-proxy-handler", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
