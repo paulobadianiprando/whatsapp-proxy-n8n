@@ -22,13 +22,13 @@ export default async function handler(req, res) {
 
   if (hasMessage) {
     await fetch("https://brazilfinancejournal.app.n8n.cloud/webhook/whatsapp-proxy-handler", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(req.body),
-    });
-  }
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify(req.body),
+});
+
 
   return res.status(200).end();
 }
