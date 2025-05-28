@@ -21,7 +21,7 @@ export default async function handler(req, res) {
     req.body?.entry?.[0]?.changes?.[0]?.value?.messages !== undefined;
 
   if (hasMessage) {
-    await fetch("https://brazilfinancejournal.app.n8n.cloud/webhook-test/cbf534ed-4b29-4190-9fe1-63c2d6a8df49/webhook", {
+    await fetch("https://brazilfinancejournal.app.n8n.cloud/webhook/proxy-handler", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -32,3 +32,4 @@ export default async function handler(req, res) {
 
   return res.status(200).end();
 }
+
