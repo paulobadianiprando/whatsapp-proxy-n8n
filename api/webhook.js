@@ -6,7 +6,7 @@ export default async function handler(req, res) {
     const token = req.query["hub.verify_token"];
     const challenge = req.query["hub.challenge"];
 
-    if (mode && token && mode === "subscribe" && token === VERIFY_TOKEN) {
+    if (mode === "subscribe" && token === VERIFY_TOKEN) {
       return res.status(200).send(challenge);
     } else {
       return res.status(403).send("Forbidden");
@@ -17,16 +17,16 @@ export default async function handler(req, res) {
     return res.status(405).send("Method Not Allowed");
   }
 
-  const body = req.body;
-  const hasMessages = body?.messages !== undefined;
+  const hasMessage =
+    req.body?.entry?.[0]?.changes?.[0]?.value?.messages !== undefined;
 
-  if (hasMessages) {
+  if (hasMessage) {
     await fetch("https://brazilfinancejournal.app.n8n.cloud/webhook-test/cbf534ed-4b29-4190-9fe1-63c2d6a8df49/webhook", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(body),
+      body: JSON.stringify(req.body),
     });
   }
 
